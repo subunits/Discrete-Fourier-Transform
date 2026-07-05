@@ -1,6 +1,6 @@
 # DFT Visualizer: A+ Grade - Quick Reference
 
-## 📊 Your Grade Improvement
+## 📊 Code Grade Comparison
 
 ```
 OLD CODE:        A- (86.5%)  ← Has bugs and missing robustness
@@ -134,12 +134,15 @@ python test_dft_visualizer.py
 # Should show: "Ran 25 tests in X.XXXs - OK"
 ```
 
-### Try It Out
-```bash
-# GUI version with your microphone
-python dft_visualizer_production.py
+### Quick Start
 
-# CLI version with a WAV file
+**Real-time GUI** (live microphone):
+```bash
+python dft_visualizer_production.py
+```
+
+**CLI analyzer** (WAV file):
+```bash
 python dft_visualizer_strip_production.py /path/to/audio.wav
 ```
 
@@ -321,14 +324,14 @@ logger.error(f"Error loading file: {e}")
 
 ---
 
-## 📋 Checklist: Am I Using the Right Code?
+## 📋 Checklist: Implementation
 
-- [ ] Using `dft_visualizer_production.py` for GUI? (PyQtGraph)
-- [ ] Using `dft_visualizer_strip_production.py` for CLI? (Matplotlib)
-- [ ] Ran `test_dft_visualizer.py` to verify installation?
-- [ ] No longer using old `dft_visualizer.py` (v4.0)?
-- [ ] No longer using old `dft_visualizer_strip.py` (v2.0)?
-- [ ] Reviewed `DEPLOYMENT_GUIDE.md` for your use case?
+- [ ] Use `dft_visualizer_production.py` for GUI (PyQtGraph)
+- [ ] Use `dft_visualizer_strip_production.py` for CLI (Matplotlib)
+- [ ] Run `test_dft_visualizer.py` to verify installation
+- [ ] Replace old `dft_visualizer.py` (v4.0)
+- [ ] Replace old `dft_visualizer_strip.py` (v2.0)
+- [ ] Review `DEPLOYMENT_GUIDE.md` for specific use case
 
 ---
 
@@ -340,9 +343,9 @@ pip install sounddevice soundfile numpy scipy matplotlib pyqtgraph PyQt5
 ```
 
 ### "FFT magnitude looks wrong"
-**Check**: Are you using window normalization?
+**Verify**: Window normalization is implemented
 ```python
-# Must have:
+# Must include:
 window_norm = np.sum(hann_window) / len(hann_window)
 fft_mag = np.abs(fft) / (window_size * window_norm / 2)
 ```
@@ -367,27 +370,23 @@ pytest test_dft_visualizer.py -v --tb=short
 
 ---
 
-## 📚 Documentation Hierarchy
+## 📚 Documentation Structure
 
-1. **This file** ← You are here (Quick reference)
-2. **DEPLOYMENT_GUIDE.md** ← How to install and use
-3. **A_PLUS_ROADMAP.md** ← Detailed issue breakdown and fixes
-4. **Code comments** ← In the .py files
-5. **DEVELOPER_GUIDE.md** ← How to modify and extend
+1. **QUICK_REFERENCE.md** ← Quick overview
+2. **DEPLOYMENT_GUIDE.md** ← Installation and usage guide
+3. **Code comments** ← Implementation details in .py files
 
 ---
 
-## ✨ You're Ready!
+## ✨ Package Contents
 
-You now have:
+This implementation includes:
 - ✅ **Production-ready code** (A+ grade)
 - ✅ **Unit tests** (25 comprehensive tests)
-- ✅ **Complete documentation** (deployment + developer guides)
+- ✅ **Complete documentation** (deployment guide)
 - ✅ **Performance optimizations** (50× peak detection speedup)
 - ✅ **Error handling** (comprehensive validation + logging)
-- ✅ **Python 3.8+ compatible** (works on all modern Python)
-
-**Deploy with confidence!** 🚀
+- ✅ **Python 3.8+ compatible** (all modern Python versions)
 
 ---
 
@@ -402,4 +401,4 @@ You now have:
 
 ---
 
-**Questions?** See DEPLOYMENT_GUIDE.md or A_PLUS_ROADMAP.md
+For detailed usage instructions, see DEPLOYMENT_GUIDE.md

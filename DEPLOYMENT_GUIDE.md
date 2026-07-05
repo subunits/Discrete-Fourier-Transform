@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-You now have **production-ready A+ implementations** of the DFT visualizer that address all A- → A+ gaps:
+This package contains **production-ready A+ implementations** of the DFT visualizer that address all A- → A+ gaps:
 
 | File | Type | Status | Grade |
 |------|------|--------|-------|
@@ -227,8 +227,8 @@ import scipy.fftpack as fftpack
 from scipy.signal import find_peaks
 from dft_visualizer_production import AudioConfig, VisualizerConfig
 
-# Your audio data
-audio = np.random.randn(44100)  # 1 second @ 44.1 kHz
+# Audio data (example: 1 second of random noise @ 44.1 kHz)
+audio = np.random.randn(44100)
 
 # Process
 config = AudioConfig()
@@ -398,7 +398,7 @@ print(f"10000 extends in {elapsed:.3f}s ({elapsed/10000*1e6:.1f} µs each)")
 
 ## Migration from Old Code
 
-### If You Have Old dft_visualizer.py
+### Migrating from Old dft_visualizer.py
 ```python
 # OLD (A- grade, has bugs)
 viz = DFTVisualizer()
@@ -438,9 +438,9 @@ viz = DFTVisualizer()
 - [ ] Set file permissions appropriately
 
 ### ✅ Configuration
-- [ ] Review AudioConfig for your hardware
+- [ ] Review AudioConfig for target hardware
 - [ ] Adjust window_size based on frequency resolution needs
-- [ ] Set max_queue_size for your CPU/system
+- [ ] Set max_queue_size for available CPU/system resources
 - [ ] Configure logging level (DEBUG, INFO, WARNING, ERROR)
 
 ### ✅ Verification
@@ -476,7 +476,7 @@ viz = DFTVisualizer()
 
 ## Next Steps (Beyond A+)
 
-If you want to push further:
+For enhanced functionality beyond A+:
 
 1. **Real-Time Spectrogram Recording**
    - Record analysis frames to HDF5 for post-processing
@@ -535,5 +535,5 @@ If you want to push further:
 
 ---
 
-**You now have production-ready A+ code. Deploy with confidence!** ✨
+**This is production-ready A+ code. Ready for deployment.** ✨
 
