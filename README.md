@@ -125,8 +125,10 @@ fft_mag = np.abs(fft) / (window_size / 2)
 ```python
 # RIGHT - Accounts for window power reduction
 window = np.hanning(window_size)
-window_norm = np.sum(window) / len(window)  # ≈ 0.5 for Hann
-fft_mag = np.abs(fft) / (window_size * window_norm / 2)
+window_norm = np.sum(window) / len(window)
+fft_mag = np.abs(fft) / (
+    window_size * window_norm / 2
+)
 # Result: ±1 dB accuracy
 ```
 
@@ -151,10 +153,12 @@ self.dropped_frames = 0
 except queue.Full:
     self.dropped_frames += 1
     if self.dropped_frames % 10 == 0:
-        logger.warning(
-            f"Queue overflow: {self.dropped_frames} frames dropped. "
-            f"Increase max_queue_size if this persists."
+        msg = (
+            f"Queue overflow: "
+            f"{self.dropped_frames} frames dropped. "
+            f"Increase max_queue_size."
         )
+        logger.warning(msg)
 ```
 
 ### 3. File Sync Drift Correction
@@ -178,7 +182,10 @@ self.accumulated_drift = drift
 
 if expected > actual + drift:
     # Sleep corrected for accumulated error
-    sleep_time = min(expected - actual - drift, max_sleep)
+    sleep_time = min(
+        expected - actual - drift,
+        max_sleep
+    )
     time.sleep(sleep_time)
 ```
 
@@ -272,8 +279,13 @@ python dft_visualizer_strip_production.py audio.wav
 
 **From Python code**:
 ```python
-from dft_visualizer_production import DFTVisualizer
-from dft_visualizer_strip_production import render_wav_animation
+from dft_visualizer_production import (
+    DFTVisualizer
+)
+from dft_visualizer_strip_production import (
+    render_wav_animation,
+    AudioAnalysisConfig
+)
 
 # GUI
 viz = DFTVisualizer()

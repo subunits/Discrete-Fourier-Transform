@@ -67,7 +67,11 @@ python dft_visualizer_production.py audio.wav
 
 # With custom config
 python -c "
-from dft_visualizer_production import DFTVisualizer, AudioConfig, VisualizerConfig
+from dft_visualizer_production import (
+    DFTVisualizer,
+    AudioConfig,
+    VisualizerConfig
+)
 
 config = AudioConfig(window_size=4096, max_queue_size=1000)
 viz = DFTVisualizer(audio_config=config)
@@ -82,9 +86,10 @@ python dft_visualizer_strip_production.py audio.wav
 
 # With custom threshold
 python -c "
-from dft_visualizer_strip_production import render_wav_animation, AudioAnalysisConfig
-
-config = AudioAnalysisConfig(
+from dft_visualizer_strip_production import (
+    render_wav_animation,
+    AudioAnalysisConfig
+)
     window_size=4096,
     onset_threshold=0.2,
     max_frequency_hz=8000
@@ -207,16 +212,21 @@ viz.show()
 
 ### 2. Batch File Analysis
 ```python
-from dft_visualizer_strip_production import render_wav_animation, AudioAnalysisConfig
+from dft_visualizer_strip_production import (
+    render_wav_animation,
+    AudioAnalysisConfig
+)
 
 # Optimize for frequency resolution
 config = AudioAnalysisConfig(
-    window_size=4096,           # Higher frequency resolution
-    hop_size=1024,              # Fewer overlapping frames
-    onset_threshold=0.1         # More peaks detected
+    window_size=4096,
+    hop_size=1024,
+    onset_threshold=0.1
 )
 
-for audio_file in ['track1.wav', 'track2.wav', 'track3.wav']:
+for audio_file in (
+    ['track1.wav', 'track2.wav', 'track3.wav']
+):
     render_wav_animation(audio_file, config)
 ```
 
@@ -237,7 +247,9 @@ window_norm = np.sum(window) / len(window)
 
 windowed = audio[:config.window_size] * window
 fft_result = fftpack.fft(windowed)
-fft_mag = np.abs(fft_result[:config.window_size//2]) / (config.window_size * window_norm / 2)
+fft_mag = np.abs(
+    fft_result[:config.window_size//2]
+) / (config.window_size * window_norm / 2)
 fft_db = 20 * np.log10(fft_mag + 1e-5) + 40
 
 # Custom peak detection
@@ -248,12 +260,18 @@ print(f"Found {len(peaks)} peaks")
 ### 4. Headless Analysis with Logging
 ```python
 import logging
-from dft_visualizer_strip_production import render_wav_animation, AudioAnalysisConfig
+from dft_visualizer_strip_production import (
+    render_wav_animation,
+    AudioAnalysisConfig
+)
 
 # Configure detailed logging
 logging.basicConfig(
     level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format=(
+        '%(asctime)s - %(name)s - '
+        '%(levelname)s - %(message)s'
+    ),
     handlers=[
         logging.StreamHandler(),
         logging.FileHandler('analysis.log')

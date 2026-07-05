@@ -57,11 +57,14 @@ viz.show()
 python dft_visualizer_strip_production.py audio.wav
 
 # From Python with custom config
-from dft_visualizer_strip_production import render_wav_animation, AudioAnalysisConfig
+from dft_visualizer_strip_production import (
+    render_wav_animation,
+    AudioAnalysisConfig
+)
 
 config = AudioAnalysisConfig(
-    window_size=4096,          # Higher frequency resolution
-    onset_threshold=0.1        # More sensitive peak detection
+    window_size=4096,
+    onset_threshold=0.1
 )
 render_wav_animation('audio.wav', config)
 ```
@@ -178,7 +181,9 @@ window_norm = np.sum(window) / len(window)
 windowed = signal[:2048] * window
 
 fft_result = fftpack.fft(windowed)
-fft_mag = np.abs(fft_result[:1024]) / (2048 * window_norm / 2)
+fft_mag = np.abs(fft_result[:1024]) / (
+    2048 * window_norm / 2
+)
 fft_db = 20 * np.log10(fft_mag + 1e-5)
 
 # Peak should be at ~1000 Hz with magnitude ~0.5 (-6 dB)
@@ -260,7 +265,11 @@ self.dropped_frames = 0
 except queue.Full:
     self.dropped_frames += 1
     if self.dropped_frames % 10 == 0:
-        logger.warning(f"Queue overflow: {self.dropped_frames} frames dropped")
+        msg = (
+            f"Queue overflow: "
+            f"{self.dropped_frames} frames dropped"
+        )
+        logger.warning(msg)
 ```
 
 ### File Sync Drift
@@ -279,11 +288,14 @@ if expected > actual:
 self.accumulated_drift = 0.0
 
 drift = actual - expected
-self.accumulated_drift = drift  # Track it
+self.accumulated_drift = drift
 
 if expected > actual + drift:
-    sleep_time = min(expected - actual - drift, max_sleep)
-    time.sleep(sleep_time)  # Corrected for drift
+    sleep_time = min(
+        expected - actual - drift,
+        max_sleep
+    )
+    time.sleep(sleep_time)
 ```
 
 ---
@@ -355,8 +367,8 @@ fft_mag = np.abs(fft) / (window_size * window_norm / 2)
 **Fix**: Increase `max_queue_size` or reduce `frame_interval_ms`
 ```python
 config = AudioConfig(
-    max_queue_size=1000,  # Was 500
-    frame_interval_ms=32   # Was 16 (30 FPS vs 60 FPS)
+    max_queue_size=1000,
+    frame_interval_ms=32
 )
 ```
 
