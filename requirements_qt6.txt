@@ -1,0 +1,20 @@
+# DFT Audio Visualizer - PyQt6 (Qt6) Requirements
+# Version: 4.2-PRODUCTION (Qt6 Edition)
+
+# Core Qt6 Framework
+PyQt6==6.6.1
+PyQt6-sip==13.6.0
+
+# Audio & Signal Processing
+numpy==1.24.0
+scipy==1.11.0
+sounddevice==0.4.6
+soundfile==0.12.1
+
+# Visualization
+matplotlib==3.8.0
+pyqtgraph==0.13.3
+
+# Optional: Development Tools
+# pytest==7.4.0  # For running tests: pytest test_dft_visualizer.py
+# pytest-cov==4.1.0  # For test coverage analysis
